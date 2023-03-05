@@ -1,6 +1,24 @@
-{
-    "name": "Ram",
-    "email":"ram@gmail.com",
-    "phone":"0123456789",
-    "password": "ram123"
+async function fetcher(){
+try{
+    const data = await fetch('http://localhost:3000/getAlldata')
+    const response = await data.json
+    return response
+}
+}
+
+res.json()
+
+dataFromApi
+
+const getAlldata = () => {
+    const dataFromApi = fetcher()
+    const list = dataFromApi.data
+    const placeholderElem = document.getElementById('placeholder')
+
+
+    list.forEach(item) => {
+        const listElement = `<li>$(item.name)</li>`
+
+        placeholderElem.insertAdjacentElement('afterend')
+    })
 }

@@ -1,0 +1,147 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Dashboard
+  link(href='https://fonts.googleapis.com/css2?family=Ropa+Sans:ital@0;1&display=swap', rel='stylesheet')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC', crossorigin='anonymous')
+  link(rel='stylesheet', href='dash1.css')
+nav.navbar.navbar-expand-lg
+  .container-fluid
+    // <div class="logo">
+    a.navbar-brand(href='#')
+      img(src='/images/logo.png', alt='Quiz Logo')
+    // </div>
+    .navi
+      ul.nav.nav-tabs
+        li.nav-item
+          a.nav-link(aria-current='page', href='./home.html') Home
+        li.nav-item
+          a.nav-link(href='./algochooseindex.html') Visualizer
+        li.nav-item
+          a.nav-link(href='#') Learn
+        li.nav-item
+          a.nav-link(href='./quiz.html') Take a Quiz
+        li.nav-item
+          a.nav-link(href='./Documentation.html') Documentation
+    .Profile(style='background-color:#4B50B9; border-color: 2px solid #4B50B9; border-radius: 10px; width: 132px;\
+    color: #E2E7FE; justify-content: center; display: flex')
+      button.btn(style='border-radius: 10px; color: #E2E7FE;')
+        i.fa.fa-user(style='padding: 10px; justify-content: center;')
+        | Profile
+main
+  .body1(style='display: flex; margin: 0px; height: fit-content;')
+    .col-6(style='background-color: #E2E7FE; padding-left: 150px; padding-top: 8px;')
+      .card.mb-3(style='max-width: 650px; background-color: #4b50b954; padding-left: 40px; margin-top: 55px;box-shadow: 0px 0px 7px #4B50B9A0;')
+        .row.g-0
+          .col-md-8
+            .card-body
+              h1.card-title(style='color: #4B50B9; padding: 40px; padding-bottom: 5px;') Hi Gaurav!
+              p.card-text
+                small.text-muted(style='padding-left: 40px;')
+                  | It&apos;s good to see you
+                  | again.
+          .col-md-4
+            img.img-fluid.rounded-start(src='/images/hi.png', alt='hi')
+      .col2
+        h1(style='color:#4B50B9;padding: 25px;') Algorithms
+        .row(style='padding-left: 10px; align-items: flex-start; padding-bottom: 10px;')
+          .col-md-auto
+            a.nav-link(href='#') All Algorithms
+          .col-md-auto
+            a.nav-link(href='#') Recently Viewed
+          .col-md-auto
+            a.nav-link(href='#') Favourite
+      .card.mb-3(style='max-width: 650px; background-color: #4b50b954; border-radius: 10px; padding: 10px;box-shadow: 0px 0px 7px #4B50B9A0;')
+        .row.g-0(style='display:flex; align-items: center;')
+          .col-md-3
+            img.img-fluid(style='border-radius: 10px;', src='/images/stack.png', alt='stack')
+          .col-md-3
+            .card-body
+              h4.card-title(style='margin-left: 50px') Stack
+          .col-md-3
+            .card-body(style='margin-left:50px;')
+              button.btn1(type='submit') View Resources
+      .card.mb-3(style='max-width: 650px; background-color: #4b50b954; border-radius: 10px; padding: 10px;box-shadow: 0px 0px 7px #4B50B9A0;')
+        .row.g-0(style='display:flex; align-items: center;')
+          .col-md-3
+            img.img-fluid(style='border-radius: 10px;', src='/images/ll.png', alt='Linked list')
+          .col-md-3
+            .card-body
+              h4.card-title(style='margin-left: 50px; width: 120px;') Linked List
+          .col-md-3
+            .card-body(style='margin-left:50px;')
+              button.btn1(type='submit') View Resources
+      .card.mb-3(style='max-width: 650px; background-color: #4b50b954; border-radius: 10px; padding: 10px;box-shadow: 0px 0px 7px #4B50B9A0;')
+        .row.g-0(style='display:flex; align-items: center;')
+          .col-md-3
+            img.img-fluid(style='border-radius: 10px;', src='/images/sort.png', alt='Sorting')
+          .col-md-3
+            .card-body
+              h4.card-title(style='margin-left: 50px') Sorting
+          .col-md-3
+            .card-body(style='margin-left:50px;')
+              button.btn1(type='submit') View Resources
+      .card.mb-3(style='max-width: 650px; background-color: #4b50b954; border-radius: 10px; padding: 10px; box-shadow: 0px 0px 7px #4B50B9A0;')
+        .row.g-0(style='display:flex; align-items: center;')
+          .col-md-3
+            img.img-fluid(style='border-radius: 10px;', src='/images/sr.png', alt='searching')
+          .col-md-3
+            .card-body
+              h4.card-title(style='margin-left: 50px; width: 120px;') Searching
+          .col-md-3(style='margin-left:50px;')
+            .card-body
+              button.btn1(type='submit') View Resources
+    .col-6(style='background-color:#E2E7FE; padding-right: 150px;')
+      .card.mb-3(style='max-width: 650px; background-color: #4b50b954; border-radius: 10px; margin-top: 55px; box-shadow: 0px 0px 7px #4B50B9A0;')
+        .row.g-0
+          .col-md-4
+            img.img-fluid.rounded-start(src='/images/bestie.jpg', alt='bestie')
+          .col-md-8
+            .card-body(style='text-align: left;')
+              h2.card-title(style='color: #4B50B9; padding: 30px; padding-bottom: 5px; padding-left: 10px;') Gaurav Shah
+              h5.card-title(style='padding: 10px; padding-bottom: 5px; padding-top: 0px;')
+                | Sagarmatha
+                | Engineering College
+              h5.card-title(style='padding: 10px;padding-bottom: 5px; padding-top: 0px;')
+                | Roll No:
+                | SEC076BCT019
+              h5.card-title(style='padding: 10px;padding-bottom: 5px; padding-top: 0px;')
+                | Phone: 98xxxxxxxx
+              h5.card-title(style='padding: 10px; padding-top: 0px;') Email: gaurav@sagarmatha.edu.np
+      h3(style='color: #4B50B9; padding-top: 25px; padding-bottom: 25px;') Your Statistics
+      .col2(style='max-width: 650px;')
+        .row(style='padding-left: 0px;')
+          .col-md-auto
+            .card.mb-4(style='max-width: 650px; background-color: #4b50b954; border-radius: 10px; box-shadow: 0px 0px 7px #4B50B9A0;')
+              .row.g-0
+                .col-md-auto
+                  h1.card-title(style='padding: 22px; padding-bottom: 3px; font-size: 50px;text-align: center;') 11
+                .col-md-auto
+                  .card-body
+                    h4.card-title(style='padding: 10px; padding-bottom: 3px; text-align: center;') Algorithms Viewed
+          .col-md-auto
+            .card.mb-4(style='max-width: 650px; background-color: #4b50b954; border-radius: 10px;box-shadow: 0px 0px 7px #4B50B9A0;')
+              .row.g-0
+                .col-md-auto
+                  h1.card-title(style='padding: 22px; padding-bottom: 3px;font-size: 50px;text-align: center;') 4
+                .col-md-auto
+                  .card-body
+                    h4.card-title(style='padding: 10px; padding-bottom: 3px; text-align: center;') Algorithms Remaining
+      .card.mb-3(style='max-width: 650px; background-color: #4b50b954;box-shadow: 0px 0px 7px #4B50B9A0;')
+        .row.g-0
+          .col-md-8(style='display: flex;align-items: center;')
+            .card-body(style='padding-left: 40px')
+              h2.card-title(style='color: #4B50B9; padding-bottom: 5px;') Quiz Score
+              p.card-text
+                small.text-muted
+                  | Preview the scores of the
+                  | quizzes you have taken.
+              //
+                <button class="btn2" type="submit" style="padding-left: 40px; padding-right: 40px; padding: 15px; color: white;"> View Score
+                </button>
+              button.btn1(type='submit') View Score
+          .col-md-4
+            img.img-fluid.rounded-start(src='/images/111.png')

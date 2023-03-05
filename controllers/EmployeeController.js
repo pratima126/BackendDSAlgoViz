@@ -1,4 +1,5 @@
 // const { response } = require('express')
+const { response } = require('express')
 const Employee = require('../models/Employee')
 
 const index = (req, res, next) => {
@@ -22,6 +23,7 @@ const show = (req, res, next ) => {
     .then(response =>{
         res.json ({
             response
+            
         })
     } )
 .catch(error => {
@@ -34,18 +36,19 @@ const show = (req, res, next ) => {
 //add an employee
 //
 const store = (req, res, next) => {
+    console.log(req.body)
     let employee = new Employee({
         name: req.body.name,
         // designation: req.body.designation,
         email: req.body.email,
         phone: req.body.phone,
-        age: req.body.age
+        password: req.body.password
     })
 
   employee.save()
     .then(response => {
         res.json({
-            message: 'employee added succesfully'
+     employee
         })
     })
 
@@ -71,12 +74,12 @@ const update = (req, res, next)=> {
 
     Employee.findByIdAndUpdate(employeeID, {$set: updatedData})
     .then(() => {
-        res.json ({
+        res.status(200).json ({
             message:"employee updated successfully"
         })
     })
     .catch(error => {
-        res.json({
+        res.status(500).json({
             message: "an error occured"
         })
     })

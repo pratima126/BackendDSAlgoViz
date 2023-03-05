@@ -6,15 +6,18 @@ const employeeSchema  = new Schema({
         type: String
     },
     email:{
-        type: String
-        
+        type: String,
+       
     },
     phone: {
-        type: String
+        type: String,
+        unique : true
     },
     password: {
-        type: String
-    }
+        type: String,
+        
+    },
+  
 }, {timestamps: true})
 
 

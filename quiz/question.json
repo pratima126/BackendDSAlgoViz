@@ -1,0 +1,33 @@
+[
+    {
+      "question": "What is the capital of France?",
+      "options": [
+        "London",
+        "Paris",
+        "New York",
+        "Berlin"
+      ],
+      "answer": "Paris"
+    },
+    {
+      "question": "Who is the CEO of Tesla?",
+      "options": [
+        "Bill Gates",
+        "Steve Jobs",
+        "Elon Musk",
+        "Jeff Bezos"
+      ],
+      "answer": "Elon Musk"
+    },
+    {
+      "question": "What is the largest planet in our solar system?",
+      "options": [
+        "Venus",
+        "Saturn",
+        "Jupiter",
+        "Mars"
+      ],
+      "answer": "Jupiter"
+    }
+  ]
+  

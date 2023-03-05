@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../Algorithm-Visualizer"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Algorithm-Visualizer"
+	}
+}

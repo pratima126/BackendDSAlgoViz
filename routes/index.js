@@ -17,7 +17,7 @@ loginForm.addEventListener('submit', async (e) => {
 	}
 
 	try {
-		 const response = await fetch(`${URL}/api/employee/store`, {
+		 const response = await fetch(`${URL}/api/login`, {
 			method: "POST", 
 			 mode: "no-cors",
 			headers: {

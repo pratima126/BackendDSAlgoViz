@@ -6,18 +6,18 @@ const quizSchema = new Schema({
   question:{
 type: String
   },
-  a: {
-   type: String,
+  a:{
+    type: String
   },
-  b: {
-    type: String,
-   },
-   c: {
-    type: String,
-   },
-   d: {
-    type: String,
-   },
+  b:{
+    type: String
+  },
+  c:{
+    type: String
+  },
+  d:{
+    type: String
+  },
    answer:{
    type: String
    }

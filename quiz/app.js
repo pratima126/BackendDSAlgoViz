@@ -1,0 +1,140 @@
+const express = require('express')
+const app = express();
+const fs = require('fs');
+const path = require('path');
+const questionsFile = path.join(__dirname, 'questions.json');
+let score = 0;
+
+class Question {
+  constructor(question, options, correctAnswer) {
+    this.question = question;
+    this.options = options;
+    this.correctAnswer = correctAnswer;
+  }
+
+  checkAnswer(answer) {
+    return answer === this.correctAnswer;
+  }
+}
+
+const MongoClient = require('mongodb').MongoClient;
+
+
+// Read the JSON data from a file
+const data = fs.readFileSync('questions.json', 'utf8');
+const questions = JSON.parse(data);
+
+// Connection URI for MongoDB
+const uri = 'mongodb://localhost:27017';
+
+// Name of the database and collection
+const dbName = 'quiz';
+const collectionName = 'questions';
+
+// Connect to MongoDB and insert the documents
+MongoClient.connect(uri, function(err, client) {
+  if (err) {
+    console.log('Error connecting to MongoDB:', err);
+  } else {
+    console.log('Connected to MongoDB');
+
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+
+    // Insert the documents as an array
+    collection.insertMany(questions, function(err, result) {
+      if (err) {
+        console.log('Error inserting documents:', err);
+      } else {
+        console.log('Inserted', result.insertedCount, 'documents');
+      }
+      client.close();
+    });
+  }
+});
+
+
+
+
+// Serve the questions JSON file
+app.get('/questions', (req, res) => {
+  res.sendFile(__dirname + '/questions.json');
+});
+
+
+
+
+fetch('/questions')
+  .then(response => response.json())
+  .then(data => {
+    // Do something with the question and options, e.g. display them on the page
+    console.log(data.question);
+    console.log(data.options);
+  });
+
+
+// Define endpoint to get a random question
+app.get('/question', (req, res) => {
+  // Load questions from JSON file
+  const questions = JSON.parse(fs.readFileSync(questionsFile, 'utf8'));
+  // Choose a random question from the list
+  const question = questions[Math.floor(Math.random() * questions.length)];
+  // Return the question and its options as JSON
+  res.json({
+    question:{
+    question: question.question,
+    options: question.options
+    }
+  });
+});
+
+// // Define endpoint to submit answer
+// app.post('/answer', (req, res) => {
+//   // Check if answer is correct
+//   const answer = req.body.answer;
+//   const questions = JSON.parse(fs.readFileSync(questionsFile, 'utf8'));
+//   const currentQuestion = questions.find(q => q.question === req.body.question);
+//   if (currentQuestion.answer === answer) {
+//     // Increment score if answer is correct
+//     score++;
+//   }
+//   res.sendStatus(200);
+// });
+fetch('/answer', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ answer: 'option 1', question: 'What is the capital of France?' })
+})
+  .then(response => response.json())
+  .then(data => {
+    // Do something with the response, e.g. update the score display
+    console.log(data.score);
+  });
+
+fetch('/score')
+  .then(response => response.json())
+  .then(data => {
+    // Do something with the final score, e.g. display it to the user
+    console.log(data.score);
+  });
+
+
+// Define endpoint to get final score
+app.get('/score', (req, res) => {
+  res.json({
+    score: score
+  });
+});
+
+// Add a catch-all route for undefined routes
+app.get('*', (req, res) => {
+  res.status(404).send('404 Not Found');
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
+

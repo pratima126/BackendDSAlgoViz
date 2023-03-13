@@ -1,7 +1,7 @@
 const Quiz = require("../models/Quiz");
 
 const index = (req, res, next) => {
-    quizmodel.find()
+    Quiz.find()
     .then(response => {
         res.json({
             response

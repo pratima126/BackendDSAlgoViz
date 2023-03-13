@@ -1,0 +1,17 @@
+{
+    "questions": [
+      {
+        "question": "What is your name?",
+        "answer": "My name is ChatGPT."
+      },
+      {
+        "question": "What is your favorite color?",
+        "answer": "My favorite color is blue."
+      },
+      {
+        "question": "What is your favorite food?",
+        "answer": "As an AI, I don't eat food."
+      }
+    ]
+  }
+  

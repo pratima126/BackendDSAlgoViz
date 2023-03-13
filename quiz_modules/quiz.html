@@ -36,6 +36,176 @@
            
            </div>
               </div>
-    <script src="quiz.js"></script>
+    <script src="quiz.js">
+        const question = document.querySelector('.question');
+const option1 = document.querySelector('#option1');
+const option2 = document.querySelector('#option2');
+const option3 = document.querySelector('#option3');
+const option4 = document.querySelector('#option4');
+const submit = document.querySelector('#submit');
+const next = document.querySelector('#next');
+const prev = document.querySelector('#prev');
+
+const answers = document.querySelectorAll('.answer');
+
+const showScore = document.querySelector('#showScore');
+
+let questionCount = 0;
+
+function loadQuestion() {
+  fetch('/quiz')
+    .then((res) => res.json())
+    .then((data) => {
+      const questionData = data[questionCount];
+      question.innerHTML = questionData.question;
+      option1.innerHTML = questionData.a;
+      option2.innerHTML = questionData.b;
+      option3.innerHTML = questionData.c;
+      option4.innerHTML = questionData.d;
+    });
+}
+
+loadQuestion();
+const getCheckAnswer = () =>{
+    let answer;
+    answers.forEach((curAnsElem) => {
+        if(curAnsElem.checked){
+            answer = curAnsElem.id;
+        }
+    });
+
+    return answer;
+}
+
+const deselectAll = () => {
+    answers.forEach((curAnsElem) => curAnsElem.checked = false );
+}
+
+next.addEventListener('click', async () => {
+    const checkedAnswer = getCheckAnswer();
+    console.log(checkedAnswer);
+    questionCount ++;
+
+    deselectAll();
+
+    if(questionCount < quizDB.length){
+        loadQuestion();
+    }else{
+        showScore.innerHTML = `
+        <h3> You scored ${score}/${quizDB.length}</h3>
+        <button class = "btn" onclick="location.reload()">Play Again</button>
+        `;
+
+        showScore.classList.remove('scoreArea');
+
+    }
+});
+prev.addEventListener('click', async () => {
+    const checkedAnswer = getCheckAnswer();
+    console.log(checkedAnswer);
+    questionCount --;
+
+    deselectAll();
+
+    if(questionCount < quizDB.length){
+        loadQuestion();
+    }else{
+        showScore.innerHTML = `
+        <h3> You scored ${score}/${quizDB.length}</h3>
+        <button class = "btn" onclick="location.reload()">Play Again</button>
+        `;
+
+        showScore.classList.remove('scoreArea');
+
+    }
+});
+submit.addEventListener('click', async () => {
+    const checkedAnswer = getCheckAnswer();
+    console.log(checkedAnswer);
+
+    if(checkedAnswer ===  quizDB[questionCount].ans){
+        score ++;
+    };
+
+    // // http api call using fetch
+    // await fetch("https://cat-fact.herokuapp.com/facts").then(data => {
+    //     console.log({facts})
+    // }).catch(err => {
+    //     console.log({err})
+    // })
+
+    questionCount ++;
+
+    deselectAll();
+
+    if(questionCount < quizDB.length){
+        loadQuestion();
+    }else{
+        showScore.innerHTML = `
+        <h3> You scored ${score}/${quizDB.length}</h3>
+        <button class = "btn" onclick="location.reload()">Play Again</button>
+        `;
+
+        showScore.classList.remove('scoreArea');
+
+    }
+ 
+});
+
+    </script>
+    
+
+  <!-- <script>
+    // Fetch the quiz data from the backend
+    fetch('/quiz')
+      .then(response => response.json())
+      .then(quizDB => {
+        // Build the quiz HTML
+        let quizHtml = '';
+        quizData.questions.forEach(question => {
+          quizHtml += `
+            <h2>${question.text}</h2>
+            <ul>
+              ${question.options.map(option => `<li>${option}</li>`).join('')}
+            </ul>
+            <button onclick="submitAnswer(${question.id})">Submit Answer</button>
+          `;
+        });
+        document.querySelector('#quiz').innerHTML = quizHtml;
+        
+        // Function to submit an answer
+        function submitAnswer(questionId) {
+          const selectedOption = document.querySelector(`input[name="question-${questionId}"]:checked`);
+          if (selectedOption) {
+            const answer = selectedOption.value;
+            fetch('/score', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                question,
+                ans
+              })
+            })
+              .then(response => response.text())
+              .then(message => {
+                console.log(message);
+              })
+              .catch(error => {
+                console.error(error);
+              });
+          } else {
+            alert('Please select an option');
+          }
+        }
+      })
+    //   .catch(error => {
+    //     console.error(error);
+    //   }); -->
+  </script>
+</body>
+</html>
+
  </body>
  </html>

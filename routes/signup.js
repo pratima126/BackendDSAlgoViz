@@ -12,12 +12,28 @@ loginForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   const regex =
-    /^([0-9]+)([A-Za-z]+)([0-9]+)\.([A-Za-z]+)@sagarmatha\.edu\.np$/;
-  if (!regex.test(email)) {
-	const errEmail = document.getElementById("lbltext")
-	errEmail.style.visibility = "visible"
-    return;
-  }
+/^(?:([0-9]+)([A-Za-z]+)([0-9]+)\.([A-Za-z]+)|([A-Za-z]+)\.([A-Za-z]+))@sagarmatha\.edu\.np$/;
+if (!regex.test(email)) {
+  const errEmail = document.getElementById("lbltext")
+  errEmail.style.visibility = "visible"
+  return;
+}
+
+  // const regex =
+  //   /^([0-9]+)([A-Za-z]+)([0-9]+)\.([A-Za-z]+)@sagarmatha\.edu\.np$/;
+  // if (!regex.test(email)) {
+	// const errEmail = document.getElementById("lbltext")
+	// errEmail.style.visibility = "visible"
+  //   return;
+  // }
+//   const regexx =
+//   /^([A-Za-z]+)\.([A-Za-z]+)@sagarmatha\.edu\.np$/;
+// if (!regexx.test(email)) {
+// const errEmail = document.getElementById("lbltext")
+// errEmail.style.visibility = "visible"
+//   return;
+// }
+
 
   const reqParams = {
     email,
@@ -46,3 +62,17 @@ loginForm.addEventListener("submit", async (e) => {
     console.log("Error: ", error.message);
   }
 });
+
+fetch('/api/questions', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    question: 'What is your favorite color?',
+    answer: 'My favorite color is blue.'
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));

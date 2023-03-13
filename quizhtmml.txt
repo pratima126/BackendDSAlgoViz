@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script async src="../quiz/question.js"></script> 
+  </head>
+  <body>
+    <h1>Quiz</h1>
+    <div class="question-container">
+      <div class="question"></div>
+      <div class="options"></div>
+    </div>
+    <div class="score-container">
+      <div class="score">Score: 0</div>
+      <button class="submit">Submit</button>
+    </div>
+    <script>
+      $(document).ready(function() {
+        let questions = [];
+        let score = 0;
+        
+        // Load questions from server
+        $.get('/questions', function(data) {
+          questions = data;
+          // Display first question
+          displayQuestion();
+        });
+
+        // Display the current question and options
+        function displayQuestion() {
+          // Choose a random question from the list
+          const question = questions[Math.floor(Math.random() * questions.length)];
+          // Display the question text and options
+          $('.question').text(question.question);
+          $('.options').empty();
+          for (const option of question.options) {
+            const $option = $('<div class="option"></div>');
+            $option.text(option);
+            $('.options').append($option);
+          }
+        }
+
+        // Handle click on submit button
+        $('.submit').click(function() {
+          // Get the user's answer
+          const answer = $('.options input:checked').val();
+          // Check if answer is correct
+          const currentQuestion = questions.find(q => q.question === $('.question').text());
+          if (currentQuestion.answer === answer) {
+            // Increment score if answer is correct
+            score++;
+          }
+           // Update score display
+           $('.score').text('Score: ' + score);
+          // Display next question
+          displayQuestion();
+        });
+      });
+//       $.get('/score', function(data) {
+//   const score = data.score;
+//   // Do something with the final score, e.g. display it to the user
+// });
+
+    </script>
+  </body>
+</html>

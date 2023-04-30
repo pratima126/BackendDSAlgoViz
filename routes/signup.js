@@ -55,7 +55,7 @@ if (!regex.test(email)) {
        * Route user to another authenticated page
        */
       localStorage.setItem(SessionKey, response?.data?.token);
-      window.location.href = "index.html";
+      window.location.href = "home.html";
     }
   } catch (error) {
     // Show error message
@@ -63,16 +63,16 @@ if (!regex.test(email)) {
   }
 });
 
-fetch('/api/questions', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    question: 'What is your favorite color?',
-    answer: 'My favorite color is blue.'
-  })
-})
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+// fetch('/api/questions', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({
+//     question: 'What is your favorite color?',
+//     answer: 'My favorite color is blue.'
+//   })
+// })
+//   .then(response => response.json())
+//   .then(data => console.log(data))
+//   .catch(error => console.error(error));

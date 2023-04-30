@@ -89,7 +89,7 @@ const login = (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 
-  Employee.findOne({ $or: [{ email: username }, { phone: username }] }).then(
+  Employee.findOne({ $or: [{ email: username }] }).then(
     (employee) => {
       if (employee) {
         bcrypt.compare(password, employee.password, function (err, result) {
